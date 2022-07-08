@@ -23,7 +23,7 @@ namespace Service.BrokerFeeApplier.Modules
             builder.RegisterMyServiceBusSubscriberSingle<FireblocksWithdrawalSignal>(serviceBusClient, 
                 Topics.FireblocksWithdrawalSignalTopic,
               "broker-fee-applier",
-              TopicQueueType.Permanent);
+              TopicQueueType.PermanentWithSingleConnection);
 
             builder.RegisterType<SignalFireblocksTransferSubscriber>().AsSelf().SingleInstance().AutoActivate();
         }
