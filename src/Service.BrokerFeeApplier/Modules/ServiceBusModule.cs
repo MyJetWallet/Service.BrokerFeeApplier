@@ -4,6 +4,7 @@ using MyJetWallet.Sdk.ServiceBus;
 using MyServiceBus.Abstractions;
 using MyServiceBus.TcpClient;
 using Service.BrokerFeeApplier.Jobs;
+using Service.BrokerFeeApplier.Subscribers;
 using Service.Fireblocks.Webhook.ServiceBus;
 using Service.Fireblocks.Webhook.ServiceBus.Deposits;
 
@@ -30,6 +31,8 @@ namespace Service.BrokerFeeApplier.Modules
                 Topics.FireblocksWithdrawalSignalTopic,
               "broker-fee-applier",
               TopicQueueType.Permanent);
+
+            builder.RegisterType<SignalFireblocksTransferSubscriber>().AsSelf().SingleInstance().AutoActivate();
         }
     }
 }
