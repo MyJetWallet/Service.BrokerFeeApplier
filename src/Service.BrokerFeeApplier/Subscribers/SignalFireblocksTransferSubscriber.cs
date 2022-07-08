@@ -17,29 +17,26 @@ namespace Service.BrokerFeeApplier.Subscribers
     {
         private readonly ILogger<SignalFireblocksTransferSubscriber> _logger;
         private readonly DbContextOptionsBuilder<DatabaseContext> _dbContextOptionsBuilder;
-        private readonly ISpotChangeBalanceService _spotChangeBalanceService;
 
         public SignalFireblocksTransferSubscriber(ISubscriber<FireblocksWithdrawalSignal> subscriber,
             ILogger<SignalFireblocksTransferSubscriber> logger,
-            DbContextOptionsBuilder<DatabaseContext> dbContextOptionsBuilder,
-            ISpotChangeBalanceService spotChangeBalanceService)
+            DbContextOptionsBuilder<DatabaseContext> dbContextOptionsBuilder)
         {
             _logger = logger;
             _dbContextOptionsBuilder = dbContextOptionsBuilder;
-            _spotChangeBalanceService = spotChangeBalanceService;
             subscriber.Subscribe(HandleSignal);
         }
 
         private async ValueTask HandleSignal(FireblocksWithdrawalSignal signal)
         {
-            if (signal.Status == Fireblocks.Webhook.Domain.Models.Withdrawals.FireblocksWithdrawalStatus.Failed)
-                return;
-
             using var activity = MyTelemetry.StartActivity("Handle event FireblocksWithdrawalSignal");
             signal.AddToActivityAsJsonTag("fireblocks-withdrawal-signal");
 
             var logContext = JsonConvert.SerializeObject(signal);
             _logger.LogInformation("FireblocksWithdrawalSignal is received: {jsonText}", logContext);
+
+            if (signal.Status == Fireblocks.Webhook.Domain.Models.Withdrawals.FireblocksWithdrawalStatus.Failed)
+                return;
 
             try
             {
