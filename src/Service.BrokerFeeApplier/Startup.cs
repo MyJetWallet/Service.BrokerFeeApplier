@@ -44,6 +44,7 @@ namespace Service.BrokerFeeApplier
             builder.ConfigureJetWallet();
             builder.RegisterModule<SettingsModule>();
             builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule<ServiceBusModule>();
         }
     }
 }
