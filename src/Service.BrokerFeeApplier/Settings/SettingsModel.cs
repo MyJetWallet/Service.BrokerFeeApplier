@@ -5,29 +5,32 @@ namespace Service.BrokerFeeApplier.Settings
 {
     public class SettingsModel
     {
-        [YamlProperty("BrokerFeeApplyer.SeqServiceUrl")]
+        [YamlProperty("BrokerFeeApplier.SeqServiceUrl")]
         public string SeqServiceUrl { get; set; }
 
-        [YamlProperty("BrokerFeeApplyer.ZipkinUrl")]
+        [YamlProperty("BrokerFeeApplier.ZipkinUrl")]
         public string ZipkinUrl { get; set; }
 
-        [YamlProperty("BrokerFeeApplyer.ElkLogs")]
+        [YamlProperty("BrokerFeeApplier.ElkLogs")]
         public LogElkSettings ElkLogs { get; set; }
 
-        [YamlProperty("BrokerFeeApplyer.PostgresConnectionString")]
+        [YamlProperty("BrokerFeeApplier.PostgresConnectionString")]
         public string PostgresConnectionString { get; set; }
 
-        [YamlProperty("BrokerFeeApplyer.ChangeBalanceGatewayGrpcServiceUrl")]
+        [YamlProperty("BrokerFeeApplier.ChangeBalanceGatewayGrpcServiceUrl")]
         public string ChangeBalanceGatewayGrpcServiceUrl { get; set; }
 
-        [YamlProperty("BrokerFeeApplyer.SpotServiceBusHostPort")]
+        [YamlProperty("BrokerFeeApplier.SpotServiceBusHostPort")]
         public string SpotServiceBusHostPort { get; set; }
 
-        [YamlProperty("BrokerFeeApplyer.ProcessingIntervalSec")]
+        [YamlProperty("BrokerFeeApplier.ProcessingIntervalSec")]
         public int ProcessingIntervalSec { get; set; }
 
-        [YamlProperty("BrokerFeeApplyer.BrokerFeeId")]
+        [YamlProperty("BrokerFeeApplier.BrokerFeeId")]
         public string BrokerFeeId { get; set; }
+
+        [YamlProperty("BrokerFeeApplier.ClientWalletsGrpcServiceUrl")]
+        public string ClientWalletsGrpcServiceUrl { get; internal set; }
     }
 }
 

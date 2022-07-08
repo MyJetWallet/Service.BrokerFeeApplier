@@ -1,8 +1,11 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
 using MyJetWallet.Sdk.ServiceBus;
+using MyServiceBus.Abstractions;
 using MyServiceBus.TcpClient;
 using Service.BrokerFeeApplier.Jobs;
+using Service.Fireblocks.Webhook.ServiceBus;
+using Service.Fireblocks.Webhook.ServiceBus.Deposits;
 
 namespace Service.BrokerFeeApplier.Modules
 {
@@ -22,6 +25,11 @@ namespace Service.BrokerFeeApplier.Modules
             builder.RegisterInstance(serviceBusClient).AsSelf().SingleInstance();
 
             builder.RegisterType<FeeApplierJob>().AsSelf().SingleInstance().AutoActivate();
+
+            builder.RegisterMyServiceBusSubscriberSingle<FireblocksWithdrawalSignal>(serviceBusClient, 
+                Topics.FireblocksWithdrawalSignalTopic,
+              "broker-fee-applier",
+              TopicQueueType.Permanent);
         }
     }
 }

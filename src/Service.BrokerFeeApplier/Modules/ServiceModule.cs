@@ -2,6 +2,7 @@
 using Autofac.Core;
 using Autofac.Core.Registration;
 using Service.ChangeBalanceGateway.Client;
+using Service.ClientWallets.Client;
 
 namespace Service.BrokerFeeApplier.Modules
 {
@@ -11,6 +12,8 @@ namespace Service.BrokerFeeApplier.Modules
         {
             builder
                 .RegisterSpotChangeBalanceGatewayClient(Program.Settings.ChangeBalanceGatewayGrpcServiceUrl);
+
+            builder.RegisterClientWalletsClientsWithoutCache(Program.Settings.ClientWalletsGrpcServiceUrl);
         }
     }
 }
