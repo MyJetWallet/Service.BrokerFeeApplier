@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Core;
 using Autofac.Core.Registration;
+using Service.BrokerFeeApplier.Domain.Withdrawals;
 using Service.ChangeBalanceGateway.Client;
 using Service.ClientWallets.Client;
 
@@ -14,6 +15,8 @@ namespace Service.BrokerFeeApplier.Modules
                 .RegisterSpotChangeBalanceGatewayClient(Program.Settings.ChangeBalanceGatewayGrpcServiceUrl);
 
             builder.RegisterClientWalletsClientsWithoutCache(Program.Settings.ClientWalletsGrpcServiceUrl);
+
+            builder.RegisterInstance(new FireblocksWithdrawalNoteService()).AsSelf();
         }
     }
 }

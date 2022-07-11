@@ -100,5 +100,8 @@ namespace Service.BrokerFeeApplier.Domain.Models.FireblocksWithdrawals
         [DataMember(Order = 15)]
         public string FeeApplicationIdInMe { get; set; }
 
+        [DataMember(Order = 16)]
+        public FireblocksFeeApplicationType Type { get; set; }
+
     }
 }

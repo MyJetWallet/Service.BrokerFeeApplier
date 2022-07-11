@@ -5,9 +5,10 @@ using Service.BrokerFeeApplier.Grpc.Models;
 namespace Service.BrokerFeeApplier.Grpc
 {
     [ServiceContract]
-    public interface IHelloService
+    public interface IFeeApplicationService
     {
+
         [OperationContract]
-        Task<HelloMessage> SayHelloAsync(HelloRequest request);
+        Task<GetFeeApplicationsResponse> GetFeeApplications(GetFeeApplicationsRequest request);
     }
 }

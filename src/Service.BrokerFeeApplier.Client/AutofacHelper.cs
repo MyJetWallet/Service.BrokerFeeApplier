@@ -11,7 +11,7 @@ namespace Service.BrokerFeeApplier.Client
         {
             var factory = new BrokerFeeApplyerClientFactory(grpcServiceUrl);
 
-            builder.RegisterInstance(factory.GetHelloService()).As<IHelloService>().SingleInstance();
+            builder.RegisterInstance(factory.GetFeeApplicationService()).As<IFeeApplicationService>().SingleInstance();
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Service.BrokerFeeApplier.Client
         {
         }
 
-        public IHelloService GetHelloService() => CreateGrpcService<IHelloService>();
+        public IFeeApplicationService GetFeeApplicationService() => CreateGrpcService<IFeeApplicationService>();
     }
 }

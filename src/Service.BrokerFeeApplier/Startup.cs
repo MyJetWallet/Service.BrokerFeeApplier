@@ -35,7 +35,7 @@ namespace Service.BrokerFeeApplier
         {
             app.ConfigureJetWallet(env, endpoints =>
             {
-                endpoints.MapGrpcSchema<HelloService, IHelloService>();
+                endpoints.MapGrpcSchema<FeeApplicationService, IFeeApplicationService>();
             });
         }
 
