@@ -19,8 +19,8 @@ namespace TestApp
             var factory = new BrokerFeeApplyerClientFactory("http://localhost:5001");
             var client = factory.GetFeeApplicationService();
 
-            var resp = await  client.SayHelloAsync(new HelloRequest(){Name = "Alex"});
-            Console.WriteLine(resp?.Message);
+            var resp = await  client.GetFeeApplications(new (){BatchSize = 10});
+            //Console.WriteLine(resp?.ToJson());
 
             Console.WriteLine("End");
             Console.ReadLine();
